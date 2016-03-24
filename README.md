@@ -1,1 +1,1 @@
-# Android_Adobe_Sample
+# Android_Adobe_Sample# アプリストアへのリリース時には/Users/h_asakura/Dropbox/work/Android_Adobe_Sample/AndroidStudioProjects/ShoppingDemoEx/AndroidSampleApp.jksを利用
