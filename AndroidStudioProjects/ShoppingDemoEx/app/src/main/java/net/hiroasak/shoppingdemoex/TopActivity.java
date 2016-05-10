@@ -2,6 +2,7 @@ package net.hiroasak.shoppingdemoex;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -52,42 +53,9 @@ public class TopActivity extends Activity implements View.OnClickListener{
 
         // Adobe計測用コード
         Config.setContext(this.getApplicationContext());
-
         String vid = Visitor.getMarketingCloudId();
         Config.setUserIdentifier(vid);
-
-//        String vid = Config.getUserIdentifier();
-//        if (vid == null || vid.length() <=0 ) {
-//            vid = UUID.randomUUID().toString();
-//        }
         Config.setDebugLogging(true);
-
-
-        /** ターゲット用処理（Marketing Cloud orgを追加して、Lifecycle前にこれを呼ぶと、Analytics計測がなぜかできなくなる・・・）
-
-        TargetLocationRequest topSportsMsgTest = Target.createRequest(Const.MBOX_TOP_SPORTS_TEXT_TEST, sportMsg, null);
-        Target.loadRequest(topSportsMsgTest, new Target.TargetCallback<String>() {
-            @Override
-            public void call(String item) {
-                sportMsg = item;
-            }
-        });
-        TargetLocationRequest topFoodMsgTest = Target.createRequest(Const.MBOX_TOP_FOOD_TEXT_TEST, foodMsg, null);
-        Target.loadRequest(topFoodMsgTest, new Target.TargetCallback<String>() {
-            @Override
-            public void call(String item) {
-                foodMsg = item;
-            }
-        });
-        TargetLocationRequest topFashionMsgTest = Target.createRequest(Const.MBOX_TOP_FASHION_TEXT_TEST, fashionMsg, null);
-        Target.loadRequest(topFashionMsgTest, new Target.TargetCallback<String>() {
-            @Override
-            public void call(String item) {
-                fashionMsg = item;
-            }
-        });
-        Util.waitCall(3000);
-         **/
 
         // リンク生成
         TableRow tableRow1 = new TableRow(this);
@@ -207,5 +175,12 @@ public class TopActivity extends Activity implements View.OnClickListener{
             return false;
         }
         return true;
+    }
+
+    // カスタムスキーマの起動
+    private void openPage(String url) {
+        Intent intent = new Intent(TopActivity.this, TopActivity.class);
+        intent.putExtra("url", url);
+        startActivity(intent);
     }
 }

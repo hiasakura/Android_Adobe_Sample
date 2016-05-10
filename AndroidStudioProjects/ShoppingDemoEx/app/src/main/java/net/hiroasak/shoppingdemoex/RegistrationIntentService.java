@@ -45,7 +45,7 @@ public class RegistrationIntentService extends IntentService {
             String token = instanceID.getToken(SENDER_ID, GoogleCloudMessaging.INSTANCE_ID_SCOPE);
 
             // GCMサーバにプロジェクトを保存
-            gcm.register(SENDER_ID);
+            // gcm.register(SENDER_ID);
 
             // Adobeサーバにtokenを保存
             sendRegistrationToServer(token);
