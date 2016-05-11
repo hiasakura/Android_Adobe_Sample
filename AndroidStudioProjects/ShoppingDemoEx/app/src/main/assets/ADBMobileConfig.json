@@ -132,6 +132,31 @@
           "values": null
         }
       ]
+    },
+    {
+      "messageId": "c01b56e6-6220-43b8-bc46-e624b87ce24f",
+      "template": "alert",
+      "payload": {
+        "title": "おめでとうございます",
+        "content": "あなた向けのスポーツクーポンがあります",
+        "confirm": "はい",
+        "cancel": "いいえ",
+        "url": "hiroasak-scheme://hiroasak-host?id=hogehogehoge&a.deeplink.id=5732c3f3bb6be8607beb43aa"
+      },
+      "showOffline": true,
+      "showRule": "always",
+      "endDate": 2524730400,
+      "startDate": 0,
+      "audiences": [],
+      "triggers": [
+        {
+          "key": "pageName",
+          "matches": "eq",
+          "values": [
+            "TopActivity"
+          ]
+        }
+      ]
     }
   ],
   "remotes": {
