@@ -176,11 +176,4 @@ public class TopActivity extends Activity implements View.OnClickListener{
         }
         return true;
     }
-
-    // カスタムスキーマの起動
-    private void openPage(String url) {
-        Intent intent = new Intent(TopActivity.this, TopActivity.class);
-        intent.putExtra("url", url);
-        startActivity(intent);
-    }
 }

@@ -50,9 +50,6 @@ public class RegistrationIntentService extends IntentService {
             // Adobeサーバにtokenを保存
             sendRegistrationToServer(token);
 
-            // TODO ローカルにtoken保存
-            //storeRegistrationToken(getApplicationContext(), token);
-
             sharedPreferences.edit().putBoolean(Const.SENT_TOKEN_TO_SERVER, true).apply();
         } catch (Exception e) {
             Log.d(TAG, "Failed to complete token refresh", e);
@@ -75,43 +72,4 @@ public class RegistrationIntentService extends IntentService {
         Analytics.trackAction("generateToken", contextData);
 
     }
-
-    /**
-     * Subscribe to any GCM topics of interest, as defined by the TOPICS constant.
-     *
-     * @param token GCM token
-     * @throws IOException if unable to reach the GCM PubSub service
-     */
-    private void subscribeTopics(String token) throws IOException {
-        GcmPubSub pubSub = GcmPubSub.getInstance(this);
-        for (String topic : TOPICS) {
-            pubSub.subscribe(token, "/topics/" + topic, null);
-        }
-    }
-
-    /***** 追加実装：tokenを端末に保存する処理
-    private void storeRegistrationToken(Context context, String token) {
-        final SharedPreferences prefs = getGCMPreferences(context);
-        int appVersion = getAppVersion(context);
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putString(PROPERTY_REG_ID, token);
-        editor.putInt(PROPERTY_APP_VERSION, appVersion);
-        editor.commit();
-    }
-
-    private SharedPreferences getGCMPreferences(Context context) {
-        return getSharedPreferences(TopActivity.class.getSimpleName(),
-                Context.MODE_PRIVATE);
-    }
-
-    private int getAppVersion(Context context) {
-        try {
-            PackageInfo packageInfo = context.getPackageManager()
-                    .getPackageInfo(context.getPackageName(), 0);
-            return packageInfo.versionCode;
-        } catch (NameNotFoundException e) {
-            throw new RuntimeException("package not found : " + e);
-        }
-    }
-     ****/
 }

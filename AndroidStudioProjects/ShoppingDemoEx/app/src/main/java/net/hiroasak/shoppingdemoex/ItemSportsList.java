@@ -30,9 +30,9 @@ public class ItemSportsList extends Activity implements View.OnClickListener{
         setResult(Activity.RESULT_OK);
 
         // Target通知用リクエスト
-        Config.setContext(this.getApplicationContext());
-        TargetLocationRequest viewedMbox = Target.createRequest(Const.MBOX_CATE_SPORTS_VIEWED, Const.MBOX_SUCCESS_TEXT, null);
-        Target.loadRequest(viewedMbox, new Target.TargetCallback<String>() {@Override public void call(String item) {}});
+        //Config.setContext(this.getApplicationContext());
+        //TargetLocationRequest viewedMbox = Target.createRequest(Const.MBOX_CATE_SPORTS_VIEWED, Const.MBOX_SUCCESS_TEXT, null);
+        //Target.loadRequest(viewedMbox, new Target.TargetCallback<String>() {@Override public void call(String item) {}});
 
         // インテントからのパラメータ取得
         String cateName = "";
