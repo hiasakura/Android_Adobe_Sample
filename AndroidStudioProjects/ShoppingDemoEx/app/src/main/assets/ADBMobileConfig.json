@@ -4,13 +4,11 @@
     "org": "D44CC6335538201A0A4C98A1@AdobeOrg"
   },
   "target": {
-    "clientCode": "adobeinthirofumiasak",
+    "clientCode": "",
     "timeout": 5
   },
   "audienceManager": {
-    "server": "hirofumiasakura.demdex.net",
-    "analyticsForwardingEnabled": false,
-    "timeout": 5
+    "server": ""
   },
   "acquisition": {
     "server": "c00.adobe.com",
@@ -22,13 +20,12 @@
     "ssl": false,
     "offlineEnabled": false,
     "charset": "UTF-8",
-    "lifecycleTimeout": 300,
+    "lifecycleTimeout": 30,
     "privacyDefault": "optedin",
     "batchLimit": 0,
     "timezone": "JST",
     "timezoneOffset": 540,
-    "referrerTimeout": 1000,
-    "backdateSessionInfo": false,
+    "referrerTimeout": 10,
     "poi": []
   },
   "messages": [

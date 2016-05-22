@@ -1,8 +1,8 @@
 package net.hiroasak.shoppingdemoex;
+import com.adobe.mobile.*;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -12,12 +12,10 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.webkit.WebView;
-import com.adobe.mobile.*;
 import java.util.*;
 
 
 /** プッシュメッセージ用 **/
-import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import android.util.Log;
@@ -44,6 +42,12 @@ public class TopActivity extends Activity implements View.OnClickListener{
         super.onCreate(bundle);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
+        // Adobe計測用コード
+        Config.setContext(this.getApplicationContext());
+//        String vid = Visitor.getMarketingCloudId();
+//        Config.setUserIdentifier(vid);
+        Config.setDebugLogging(true);
+
         // レイアウト生成
         TableLayout layout = new TableLayout(this);
         layout.setStretchAllColumns(true);
@@ -51,11 +55,6 @@ public class TopActivity extends Activity implements View.OnClickListener{
         layout.setBackgroundColor(Color.WHITE);
         setContentView(layout);
 
-        // Adobe計測用コード
-        Config.setContext(this.getApplicationContext());
-        String vid = Visitor.getMarketingCloudId();
-        Config.setUserIdentifier(vid);
-        Config.setDebugLogging(true);
 
         // リンク生成
         TableRow tableRow1 = new TableRow(this);
