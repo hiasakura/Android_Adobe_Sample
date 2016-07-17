@@ -43,12 +43,10 @@ public class PurchaseActivity extends Activity implements View.OnClickListener{
         // インテントからのパラメータ取得
         String prdId = "";
         String prdPrice = "";
-        String prdCategory = "";
         Bundle extras = getIntent().getExtras();
         ItemData itm = new ItemData();
         if (extras != null) prdId = extras.getString(Const.INTENT_KEY_PRODUCT);
         prdPrice = itm.getItemData(prdId,Const.ITEM_KEY_PRICE);
-        prdCategory = itm.getItemData(prdId,Const.ITEM_KEY_CATE);
 
         // レイアウト生成
         TableLayout layout = new TableLayout(this);
@@ -60,7 +58,6 @@ public class PurchaseActivity extends Activity implements View.OnClickListener{
         // リンク生成
         TableRow tableRow1 = new TableRow(this);
         tableRow1.addView(makeText("Thank You！", Const.TAG_THANKS_TEXT));
-        tableRow1.addView(makeImage(R.drawable.thankyou, Const.TAG_THANKS_IMG));
         tableRow1.setGravity(Gravity.CENTER_VERTICAL);
 
         TableRow tableRow2 = new TableRow(this);

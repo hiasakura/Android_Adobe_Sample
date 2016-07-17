@@ -54,20 +54,7 @@ public class ItemFoodList extends Activity implements View.OnClickListener{
         tableRow1.addView(makeImage(R.drawable.item_banana, Const.PRD_ID_200001));
         tableRow1.addView(makeText(itm.getItemData(Const.PRD_ID_200001, Const.ITEM_KEY_MSG), Const.PRD_ID_200001));
         tableRow1.setGravity(Gravity.CENTER_VERTICAL);
-
-        TableRow tableRow2 = new TableRow(this);
-        tableRow2.addView(makeImage(R.drawable.item_tuna, Const.PRD_ID_200002));
-        tableRow2.addView(makeText(itm.getItemData(Const.PRD_ID_200002, Const.ITEM_KEY_MSG), Const.PRD_ID_200002));
-        tableRow2.setGravity(Gravity.CENTER_VERTICAL);
-
-        TableRow tableRow3 = new TableRow(this);
-        tableRow3.addView(makeImage(R.drawable.item_plum, Const.PRD_ID_200003));
-        tableRow3.addView(makeText(itm.getItemData(Const.PRD_ID_200003, Const.ITEM_KEY_MSG), Const.PRD_ID_200003));
-        tableRow3.setGravity(Gravity.CENTER_VERTICAL);
-
         layout.addView(tableRow1, Util.createParam(Const.MP, Const.WC));
-        layout.addView(tableRow2, Util.createParam(Const.MP, Const.WC));
-        layout.addView(tableRow3, Util.createParam(Const.MP, Const.WC));
 
         HashMap<String, Object> contextData = new HashMap<String, Object>();
         contextData.put("prop1", this.getLocalClassName());

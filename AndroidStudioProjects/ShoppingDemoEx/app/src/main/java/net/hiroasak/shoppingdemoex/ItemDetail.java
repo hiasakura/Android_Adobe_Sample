@@ -52,20 +52,13 @@ public class ItemDetail extends Activity implements View.OnClickListener {
         ImageView itemImg01 = new ImageView(this);
         itemImg01.setImageBitmap(bitmap01);
 
-        String pics02 = prdId + Const.IMG_FILE_RIGHT;
-        int picId02 = getResources().getIdentifier(pics02, Const.DIR_IMAGE, getPackageName());
-        Bitmap bitmap02 = BitmapFactory.decodeResource(getResources(), picId02);
-        ImageView itemImg02 = new ImageView(this);
-        itemImg02.setImageBitmap(bitmap02);
-
         TableRow tableRow0 = new TableRow(this);
         tableRow0.addView(itemImg01);
-        tableRow0.addView(itemImg02);
         tableRow0.setGravity(Gravity.LEFT);
 
         // テキスト情報
         TableRow.LayoutParams rowLayout = new TableRow.LayoutParams();
-        rowLayout.span = 2;
+        rowLayout.span = 1;
 
         TableRow tableRow1 = new TableRow(this);
         TableRow tableRow2 = new TableRow(this);

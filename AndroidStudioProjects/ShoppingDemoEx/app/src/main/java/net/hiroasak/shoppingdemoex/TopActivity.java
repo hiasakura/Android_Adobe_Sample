@@ -3,6 +3,7 @@ import com.adobe.mobile.*;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -44,9 +45,15 @@ public class TopActivity extends Activity implements View.OnClickListener{
 
         // Adobe計測用コード
         Config.setContext(this.getApplicationContext());
-//        String vid = Visitor.getMarketingCloudId();
-//        Config.setUserIdentifier(vid);
         Config.setDebugLogging(true);
+
+        // Intentが存在した場合の処理
+        Bundle extra = getIntent().getExtras();
+        if(extra != null) {
+            String link = extra.getString(Const.PUSH_LINK_NAME);
+            Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
+            startActivity(i);
+        }
 
         // レイアウト生成
         TableLayout layout = new TableLayout(this);
@@ -72,17 +79,10 @@ public class TopActivity extends Activity implements View.OnClickListener{
         tableRow3.addView(makeText(fashionMsg, Const.TAG_CATE_CLOTHES));
         tableRow3.setGravity(Gravity.CENTER_VERTICAL);
 
-        TableRow tableRow4 = new TableRow(this);
-        TableRow.LayoutParams rowLayout = new TableRow.LayoutParams();
-        rowLayout.span = 2;
-        tableRow4.addView(makeImage(R.drawable.ex_banner, Const.TAG_EX_BANNER), rowLayout);
-        tableRow4.setGravity(Gravity.CENTER_VERTICAL);
-
         // テーブル情報セット
         layout.addView(tableRow1, Util.createParam(Const.WC, Const.WC));
         layout.addView(tableRow2, Util.createParam(Const.WC, Const.WC));
         layout.addView(tableRow3, Util.createParam(Const.WC, Const.WC));
-        layout.addView(tableRow4, Util.createParam(Const.WC, Const.WC));
 
         HashMap<String, Object> contextData = new HashMap<String, Object>();
         contextData.put("prop1", this.getLocalClassName());

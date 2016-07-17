@@ -67,8 +67,11 @@ public class RegistrationIntentService extends IntentService {
         Log.i(TAG, "UserID: " + Config.getUserIdentifier());
         Log.i(TAG, "MCID: " + Visitor.getMarketingCloudId());
         HashMap contextData = new HashMap<String, Object>();
+
+        // Tokenはdemdexに送られているが検証用に取得しておく
         contextData.put("prop4", Visitor.getMarketingCloudId());
         contextData.put("prop5", token);
+
         Analytics.trackAction("generateToken", contextData);
 
     }

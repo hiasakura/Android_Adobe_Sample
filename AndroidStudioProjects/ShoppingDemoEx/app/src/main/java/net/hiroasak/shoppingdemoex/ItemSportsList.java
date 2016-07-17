@@ -48,20 +48,7 @@ public class ItemSportsList extends Activity implements View.OnClickListener{
         tableRow1.addView(makeImage(R.drawable.item_helmet, Const.PRD_ID_100001));
         tableRow1.addView(makeText(itm.getItemData(Const.PRD_ID_100001, Const.ITEM_KEY_MSG), Const.PRD_ID_100001));
         tableRow1.setGravity(Gravity.CENTER_VERTICAL);
-
-        TableRow tableRow2 = new TableRow(this);
-        tableRow2.addView(makeImage(R.drawable.item_shoes, Const.PRD_ID_100002));
-        tableRow2.addView(makeText(itm.getItemData(Const.PRD_ID_100002, Const.ITEM_KEY_MSG), Const.PRD_ID_100002));
-        tableRow2.setGravity(Gravity.CENTER_VERTICAL);
-
-        TableRow tableRow3 = new TableRow(this);
-        tableRow3.addView(makeImage(R.drawable.item_ski, Const.PRD_ID_100003));
-        tableRow3.addView(makeText(itm.getItemData(Const.PRD_ID_100003, Const.ITEM_KEY_MSG), Const.PRD_ID_100003));
-        tableRow3.setGravity(Gravity.CENTER_VERTICAL);
-
         layout.addView(tableRow1, Util.createParam(Const.MP, Const.WC));
-        layout.addView(tableRow2, Util.createParam(Const.MP, Const.WC));
-        layout.addView(tableRow3, Util.createParam(Const.MP, Const.WC));
 
         HashMap<String, Object> contextData = new HashMap<String, Object>();
         contextData.put("prop1", this.getLocalClassName());

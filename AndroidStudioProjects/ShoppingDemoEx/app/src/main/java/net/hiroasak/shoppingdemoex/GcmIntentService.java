@@ -3,6 +3,7 @@ import android.app.IntentService;
 import android.app.NotificationManager;
 import android.app.Notification;
 import android.app.PendingIntent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.content.Context;
 import android.content.Intent;
@@ -37,8 +38,10 @@ public class GcmIntentService extends IntentService{
         if (!extras.isEmpty()) {
 
             Intent notificationIntent = new Intent(this, TopActivity.class);
+            notificationIntent.putExtra(Const.PUSH_LINK_NAME,extras.getString(Const.PUSH_LINK_NAME));
+
             PendingIntent pendingIntent =
-                    PendingIntent.getActivity(this, 0, notificationIntent, 0);
+                    PendingIntent.getActivity(this, 777, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
             NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext());
             builder.setContentIntent(pendingIntent);
@@ -47,7 +50,6 @@ public class GcmIntentService extends IntentService{
             builder.setContentText(extras.getString("message"));
             builder.setContentInfo("info");
             builder.setWhen(System.currentTimeMillis());
-            builder.setContentIntent(pendingIntent);
             builder.setSmallIcon(android.R.drawable.ic_menu_info_details);
             Notification notification = builder.build();
 

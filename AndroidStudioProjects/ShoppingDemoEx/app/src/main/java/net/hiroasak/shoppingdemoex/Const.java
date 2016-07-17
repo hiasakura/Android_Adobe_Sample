@@ -29,16 +29,8 @@ public class Const {
     /* 製品情報 */
     // スポーツ
     public final static String PRD_ID_100001 = "p100001";
-    public final static String PRD_ID_100002 = "p100002";
-    public final static String PRD_ID_100003 = "p100003";
-    // 食品
     public final static String PRD_ID_200001 = "p200001";
-    public final static String PRD_ID_200002 = "p200002";
-    public final static String PRD_ID_200003 = "p200003";
-    // 洋服
     public final static String PRD_ID_300001 = "p300001";
-    public final static String PRD_ID_300002 = "p300002";
-    public final static String PRD_ID_300003 = "p300003";
 
     // キー情報
     public final static String INTENT_KEY_PRODUCT   = "prdId";
@@ -62,4 +54,11 @@ public class Const {
 
     public static final String SENT_TOKEN_TO_SERVER = "sentTokenToServer";
     public static final String REGISTRATION_COMPLETE = "registrationComplete";
+
+    // DeepLink用変数
+    public static final String PUSH_LINK_NAME = "adb_deeplink";
+    public static final String PUSH_PAYLOAD_TARGET = "target";
+    public static final String PUSH_PAYLOAD_MSG = "msg";
+    public static final String PUSH_PAYLOAD_SOUND = "sound";
+    public static final String PUSH_PAYLOAD_FROM = "from";
 }
