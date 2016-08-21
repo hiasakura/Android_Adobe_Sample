@@ -1,5 +1,6 @@
 package net.hiroasak.shoppingdemoex;
-import com.adobe.mobile.*;
+import com.adobe.mobile.Analytics;
+import com.adobe.mobile.Config;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -62,7 +63,6 @@ public class TopActivity extends Activity implements View.OnClickListener{
         layout.setBackgroundColor(Color.WHITE);
         setContentView(layout);
 
-
         // リンク生成
         TableRow tableRow1 = new TableRow(this);
         tableRow1.addView(makeImage(R.drawable.sports_cate, Const.TAG_CATE_SPORTS));
@@ -91,7 +91,6 @@ public class TopActivity extends Activity implements View.OnClickListener{
 
         /** プッシュメッセージ用処理 */
         if (checkPlayServices()) {
-
             Intent intent = new Intent(this, RegistrationIntentService.class);
             startService(intent);
         }
@@ -134,13 +133,13 @@ public class TopActivity extends Activity implements View.OnClickListener{
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
         Config.collectLifecycleData(this);
     }
 
     @Override
-    protected void onPause() {
+    public void onPause() {
         super.onPause();
         Config.pauseCollectingLifecycleData();
     }

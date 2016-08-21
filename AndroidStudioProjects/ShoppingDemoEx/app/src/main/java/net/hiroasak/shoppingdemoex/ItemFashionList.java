@@ -71,13 +71,13 @@ public class ItemFashionList extends Activity implements View.OnClickListener{
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
         Config.collectLifecycleData(this);
     }
 
     @Override
-    protected void onPause() {
+    public void onPause() {
         super.onPause();
         Config.pauseCollectingLifecycleData();
     }
