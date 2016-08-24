@@ -4,11 +4,11 @@
     "org": "D44CC6335538201A0A4C98A1@AdobeOrg"
   },
   "target": {
-    "clientCode": "adobeinthirofumiasak",
+    "clientCode": "",
     "timeout": 5
   },
   "audienceManager": {
-    "server": "hirofumiasakura.demdex.net"
+    "server": ""
   },
   "acquisition": {
     "server": "c00.adobe.com",
@@ -25,8 +25,27 @@
     "batchLimit": 0,
     "timezone": "JST",
     "timezoneOffset": 540,
-    "referrerTimeout": 1000,
-    "poi": []
+    "referrerTimeout": 5,
+    "poi": [
+      [
+        "Adobe Sydney",
+        -33.87166268,
+        151.20361089,
+        10
+      ],
+      [
+        "Adobe Japan",
+        35.618692,
+        139.731911,
+        200
+      ],
+      [
+        "Home",
+        35.75808,
+        139.670811,
+        500
+      ]
+    ]
   },
   "messages": [
     {

@@ -14,6 +14,17 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.webkit.WebView;
+import android.provider.Settings;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.location.LocationProvider;
+
+import android.support.v4.app.ActivityCompat;
+import android.Manifest;
+import android.content.pm.PackageManager;
+
+
 import java.util.*;
 
 
@@ -26,7 +37,7 @@ import android.util.Log;
  * Created by h_asakura on 2015/09/15.
  * Main Activityクラス
  */
-public class TopActivity extends Activity implements View.OnClickListener{
+public class TopActivity extends Activity implements View.OnClickListener,LocationListener{
 
     // 商品情報生成
     private Boolean isData = ItemData.createItemData();
@@ -37,6 +48,10 @@ public class TopActivity extends Activity implements View.OnClickListener{
     /** プッシュメッセージ用 **/
     private int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
     private String THIS_CLASS ="TopActivity";
+
+    /** ロケーション管理用 **/
+    private LocationManager mLocationManager;
+
 
     @Override
     public void onCreate(Bundle bundle){
@@ -55,6 +70,9 @@ public class TopActivity extends Activity implements View.OnClickListener{
             Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
             startActivity(i);
         }
+
+        // 位置情報の設定処理
+        mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
         // レイアウト生成
         TableLayout layout = new TableLayout(this);
@@ -134,25 +152,53 @@ public class TopActivity extends Activity implements View.OnClickListener{
 
     @Override
     public void onResume() {
+
+        // ロケーション取得判定
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION,}, 1000);
+        }
+        else{
+            if (mLocationManager != null) {
+                mLocationManager.requestLocationUpdates(
+                        LocationManager.GPS_PROVIDER,
+                        0,
+                        0,
+                        this);
+                Location location = mLocationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                onLocationChanged(location);
+            }
+
+        }
         super.onResume();
         Config.collectLifecycleData(this);
     }
 
     @Override
     public void onPause() {
+
+        // ロケーション取得判定
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION,}, 1000);
+        }
+        else{
+            if (mLocationManager != null) {
+                mLocationManager.removeUpdates(this);
+            }
+        }
+
         super.onPause();
         Config.pauseCollectingLifecycleData();
     }
 
     // テキスト生成
-    private TextView makeText(String text, String tag){
+    private TextView makeText(String text, String tag) {
         TextView textview = Util.createText(this, text, tag, true);
         textview.setOnClickListener(this);
         return textview;
     }
 
     // ボタン生成
-    private ImageButton makeImage(int id,String tag){
+    private ImageButton makeImage(int id,String tag) {
         ImageButton imgButton = Util.createImage(this, id, tag, true);
         imgButton.setOnClickListener(this);
         return imgButton;
@@ -173,5 +219,34 @@ public class TopActivity extends Activity implements View.OnClickListener{
             return false;
         }
         return true;
+    }
+
+    // ロケーション取得用の実装
+    @Override
+    public void onLocationChanged(Location location) {
+        HashMap<String, Object> contextData = new HashMap<String, Object>();
+        contextData.put("prop6", String.valueOf(location.getLatitude()));
+        contextData.put("prop7", String.valueOf(location.getLongitude()));
+        Analytics.trackAction("LocationTraffic", contextData);
+        Analytics.trackLocation(location, contextData);
+
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+    }
+    @Override
+    public void onProviderEnabled(String provider) {
+    }
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+        switch (status) {
+            case LocationProvider.AVAILABLE:
+                break;
+            case LocationProvider.OUT_OF_SERVICE:
+                break;
+            case LocationProvider.TEMPORARILY_UNAVAILABLE:
+                break;
+        }
     }
 }
