@@ -69,8 +69,8 @@ public class RegistrationIntentService extends IntentService {
         HashMap contextData = new HashMap<String, Object>();
 
         // Tokenはdemdexに送られているが検証用に取得しておく
-        contextData.put("prop4", Visitor.getMarketingCloudId());
-        contextData.put("prop5", token);
+        contextData.put("mcid", Visitor.getMarketingCloudId());
+        contextData.put("tokeninfo", token);
 
         Analytics.trackAction("generateToken", contextData);
 

@@ -1,6 +1,5 @@
 package net.hiroasak.shoppingdemoex;
-import com.adobe.mobile.Analytics;
-import com.adobe.mobile.Config;
+import com.adobe.mobile.*;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -61,6 +60,12 @@ public class TopActivity extends Activity implements View.OnClickListener,Locati
 
         // Adobe計測用コード
         Config.setContext(this.getApplicationContext());
+//        String vid = Visitor.getMarketingCloudId();
+//        Config.setUserIdentifier(vid);
+
+        // 2016.09/13 Tracking Code
+        String trackingId = Analytics.getTrackingIdentifier();
+
         Config.setDebugLogging(true);
 
         // Intentが存在した場合の処理
@@ -104,7 +109,7 @@ public class TopActivity extends Activity implements View.OnClickListener,Locati
 
         HashMap<String, Object> contextData = new HashMap<String, Object>();
         contextData.put("prop1", this.getLocalClassName());
-        contextData.put("eVar2", this.getLocalClassName());
+        contextData.put("eVar2", trackingId);
         Analytics.trackState(this.getLocalClassName(), contextData);
 
         /** プッシュメッセージ用処理 */
@@ -154,6 +159,7 @@ public class TopActivity extends Activity implements View.OnClickListener,Locati
     public void onResume() {
 
         // ロケーション取得判定
+/*
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION,}, 1000);
         }
@@ -169,6 +175,7 @@ public class TopActivity extends Activity implements View.OnClickListener,Locati
             }
 
         }
+*/
         super.onResume();
         Config.collectLifecycleData(this);
     }
